@@ -11,6 +11,7 @@ class BugherdController < ApplicationController
   }
 
   BUGHERD_PRIORITY_MAP = {
+    0 => 'Normal', # Default
     1 => 'Urgent',
     2 => 'High',
     3 => 'Normal',
@@ -26,7 +27,7 @@ class BugherdController < ApplicationController
   }
 
   BUGHERD_STATUS_MAP = {
-    0 => 'New',
+    0 => 'New', # Default
     1 => 'New',
     2 => 'New',
     4 => 'Resolved',
@@ -43,8 +44,8 @@ class BugherdController < ApplicationController
     end
     
     @issue.subject = params[:description] if params[:description]
-    @issue.status = best_match_status(params[:status_id]) if params[:status_id]
-    @issue.priority = best_match_status(params[:priority_id]) if params[:priority_id]
+    @issue.status = best_match_status(params[:status_id].to_i) if params[:status_id]
+    @issue.priority = best_match_status(params[:priority_id].to_i) if params[:priority_id]
     
     @issue.save
     
@@ -55,6 +56,7 @@ class BugherdController < ApplicationController
     @project = Project.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.journals.create(:notes => params[:comment])
+    render :text => "OK"
   end
   
 private
