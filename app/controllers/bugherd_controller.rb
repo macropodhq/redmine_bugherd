@@ -34,6 +34,7 @@ class BugherdController < ApplicationController
     @issue.subject = params[:description] if params[:description]
     @issue.status = best_match_status(params[:status_id].to_i) if params[:status_id]
     @issue.priority = best_match_priority(params[:priority_id].to_i) if params[:priority_id]
+    @issue.assignee = User.find_by_mail(params[:assignee]) if params[:assignee]
     
     if @issue.save
       render :text => "OK #{@issue.id}"
