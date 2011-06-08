@@ -3,18 +3,20 @@ class BugherdController < ApplicationController
   before_filter :require_admin
 
   BUGHERD_PRIORITY_MAP = {
-    0 => 'Normal',   # Default
-    1 => 'Urgent',   # Critical
-    2 => 'High',     # Important
-    3 => 'Normal',   # Normal
-    4 => 'Low'}      # Minor
+    0 => 'Normal',
+    1 => 'Urgent',
+    2 => 'High',
+    3 => 'Normal',
+    4 => 'Low',
+  }
 
   BUGHERD_STATUS_MAP = {
-    0 => 'New',      # Backlog
-    1 => 'New',      # To do
-    2 => 'New',      # In progress
-    4 => 'Resolved', # Testing
-    5 => 'Closed'}   # Archive
+    0 => 'New',
+    1 => 'New',
+    2 => 'New',
+    4 => 'Resolved',
+    5 => 'Closed',
+  }
 
   def update
     User.current = User.find_by_mail(params[:email])
