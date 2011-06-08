@@ -3,6 +3,8 @@ module BugherdIssueObserver
   BUGHERD_PORT = 80
   
   def after_save(issue)
+    Rails.logger.error("Sending issue #{issue.id} to BugHerd")
+    
     field = ProjectCustomField.find_by_name('BugHerd Project Key')
     return unless field
 
