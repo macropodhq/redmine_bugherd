@@ -42,6 +42,7 @@ class BugherdController < ApplicationController
       @issue = @project.issues.new
       @issue.tracker = Tracker.find_by_name('Bug')
     end
+    @issue.init_journal(User.current, nil)
     
     @issue.subject = params[:description] if params[:description]
     @issue.status = best_match_status(params[:status_id].to_i) if params[:status_id]
@@ -55,7 +56,7 @@ class BugherdController < ApplicationController
   def add_comment
     @project = Project.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
-    @issue.journals.create(:notes => params[:comment])
+    @issue.journals.create(:notes => params[:comment], :user => User.current)
     render :text => "OK"
   end
   
