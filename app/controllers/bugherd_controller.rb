@@ -7,7 +7,7 @@ class BugherdController < ApplicationController
     1 => 'Urgent',   # Critical
     2 => 'High',     # Important
     3 => 'Normal',   # Normal
-    4 => 'Low',      # Minor
+    4 => 'Low'       # Minor
   }
 
   BUGHERD_STATUS_MAP = {
@@ -15,7 +15,7 @@ class BugherdController < ApplicationController
     1 => 'New',      # To do
     2 => 'New',      # In progress
     4 => 'Resolved', # Testing
-    5 => 'Closed',   # Archive
+    5 => 'Closed'    # Archive
   }
 
   def update
