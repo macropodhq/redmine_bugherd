@@ -1,6 +1,6 @@
 class BugherdController < ApplicationController
   unloadable
-  before_filter :require_admin
+  accept_key_auth :update, :add_comment
 
   BUGHERD_PRIORITY_MAP = {
     0 => 'Normal',
@@ -19,6 +19,12 @@ class BugherdController < ApplicationController
   }
 
   def update
+    api_user = find_current_user
+    unless api_user and api_user.admin?
+      render :text => 'FAIL'
+      return
+    end
+    
     User.current = User.find_by_mail(params[:email])
     @project = Project.find(params[:project_id])
     if params[:id].present?
@@ -49,6 +55,12 @@ class BugherdController < ApplicationController
   end
   
   def add_comment
+    api_user = find_current_user
+    unless api_user and api_user.admin?
+      render :text => 'FAIL'
+      return
+    end
+    
     User.current = User.find_by_mail(params[:email])
     @project = Project.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
