@@ -1,1 +1,13 @@
+Installation instructions
+
+Install Redmine plugin:
 script/plugin install git://github.com/bugherd/redmine_bugherd.git
+
+Create a Project Custom Field called "BugHerd Project Key"
+- Administration > Custom Fields > Projects
+- Format: Text
+- New custom field
+- Name: BugHerd Project Key
+- Untick "Visible" to ensure the value is not seen by anyone but project administrator
+
+You are now ready to setup a project integration from within a BugHerd project.
