@@ -39,7 +39,7 @@ class BugherdController < ApplicationController
     redmine_priority = best_match_priority(params[:priority_id].to_i) if params[:priority_id]
     @issue.priority = redmine_priority if redmine_priority
     
-    @issue.assignee = User.find_by_mail(params[:assignee]) if params[:assignee]
+    @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
     
     if @issue.save
       render :text => "OK #{@issue.id}"
