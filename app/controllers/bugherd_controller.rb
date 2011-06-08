@@ -2,36 +2,20 @@ class BugherdController < ApplicationController
   unloadable
   before_filter :require_admin
 
-  BUGHERD_PRIORITIES = {
-    0 => '-',
-    1 => 'Critical',
-    2 => 'Important',
-    3 => 'Normal',
-    4 => 'Minor',
-  }
-
   BUGHERD_PRIORITY_MAP = {
-    0 => 'Normal', # Default
-    1 => 'Urgent',
-    2 => 'High',
-    3 => 'Normal',
-    4 => 'Low',
-  }
-
-  BUGHERD_STATUSES = {
-    0 => 'Backlog',
-    1 => 'To do',
-    2 => 'In progress',
-    4 => 'Testing',
-    5 => 'Archive',
+    0 => 'Normal',   # Default
+    1 => 'Urgent',   # Critical
+    2 => 'High',     # Important
+    3 => 'Normal',   # Normal
+    4 => 'Low',      # Minor
   }
 
   BUGHERD_STATUS_MAP = {
-    0 => 'New', # Default
-    1 => 'New',
-    2 => 'New',
-    4 => 'Resolved',
-    5 => 'Closed',
+    0 => 'New',      # Backlog
+    1 => 'New',      # To do
+    2 => 'New',      # In progress
+    4 => 'Resolved', # Testing
+    5 => 'Closed',   # Archive
   }
 
   def update
@@ -39,13 +23,13 @@ class BugherdController < ApplicationController
     @project = Project.find(params[:project_id])
     if params[:id].present?
       @issue = @project.issues.find(params[:id])
+      @issue.init_journal(User.current, nil)
     else
       @issue = Issue.new
       @issue.project = @project
       @issue.tracker = Tracker.find_by_name('Bug')
       @issue.author = User.current
     end
-    @issue.init_journal(User.current, nil)
     
     @issue.subject = params[:description] if params[:description]
     @issue.status = best_match_status(params[:status_id].to_i) if params[:status_id]

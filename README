@@ -11,3 +11,5 @@ Create a Project Custom Field called "BugHerd Project Key"
 - Untick "Visible" to ensure the value is not seen by anyone but project administrator
 
 You are now ready to setup a project integration from within a BugHerd project.
+
+BugHerd users will be matched to Redmine users by email address.
