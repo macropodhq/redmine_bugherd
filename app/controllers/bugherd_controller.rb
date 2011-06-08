@@ -35,6 +35,7 @@ class BugherdController < ApplicationController
   }
 
   def update
+    User.current = User.find_by_mail(params[:email])
     @project = Project.find(params[:project_id])
     if params[:id].present?
       @issue = @project.issues.find(params[:id])
@@ -54,6 +55,7 @@ class BugherdController < ApplicationController
   end
   
   def add_comment
+    User.current = User.find_by_mail(params[:email])
     @project = Project.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.journals.create(:notes => params[:comment], :user => User.current)
