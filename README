@@ -1,1 +1,1 @@
-script/plugin install git://github.com/vbrendel/redmine_bugherd.git
+script/plugin install git://github.com/bugherd/redmine_bugherd.git
