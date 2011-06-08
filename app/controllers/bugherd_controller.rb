@@ -40,8 +40,10 @@ class BugherdController < ApplicationController
     if params[:id].present?
       @issue = @project.issues.find(params[:id])
     else
-      @issue = @project.issues.new
+      @issue = Issue.new
+      @issue.project = @project
       @issue.tracker = Tracker.find_by_name('Bug')
+      @issue.author = User.current
     end
     @issue.init_journal(User.current, nil)
     
@@ -49,9 +51,11 @@ class BugherdController < ApplicationController
     @issue.status = best_match_status(params[:status_id].to_i) if params[:status_id]
     @issue.priority = best_match_priority(params[:priority_id].to_i) if params[:priority_id]
     
-    @issue.save
-    
-    render :text => "OK #{@issue.id}"
+    if @issue.save
+      render :text => "OK #{@issue.id}"
+    else
+      render :xml => @issue.errors
+    end
   end
   
   def add_comment
