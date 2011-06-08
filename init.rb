@@ -2,11 +2,11 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_bugherd do
   name 'Redmine Bugherd plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'BugHerd Pty Ltd'
+  description 'Redmine plugin for BugHerd.com integration'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/bugherd/redmine_bugherd'
+  author_url 'http://www.bugherd.com'
 end
 
 require 'dispatcher'
