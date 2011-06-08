@@ -41,14 +41,10 @@ class BugherdController < ApplicationController
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
     
-    if @issue.changed?
-      if @issue.save
-        render :text => "OK #{@issue.id}"
-      else
-        render :xml => @issue.errors
-      end
-    else
+    if @issue.save
       render :text => "OK #{@issue.id}"
+    else
+      render :xml => @issue.errors
     end
   end
   
