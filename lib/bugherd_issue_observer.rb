@@ -1,4 +1,7 @@
 module BugherdIssueObserver
+  BUGHERD_URL = 'www.bh1.nerdburger.net'
+  BUGHERD_PORT = 80
+  
   def after_save(issue)
     field = ProjectCustomField.find_by_name('BugHerd Project Key')
     return unless field
@@ -9,7 +12,7 @@ module BugherdIssueObserver
     project_key = value.value
     return unless project_key.present?
 
-    http = Net::HTTP.new('www.bh1.nerdburger.net', 80)
+    http = Net::HTTP.new(BUGHERD_URL, BUGHERD_PORT)
     resp = http.post("/api_v1/projects/#{project_key}/redmine_web_hook", issue.to_xml(
       :only => [:id, :subject, :description],
       :include => {
