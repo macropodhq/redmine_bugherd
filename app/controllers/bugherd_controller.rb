@@ -2,22 +2,6 @@ class BugherdController < ApplicationController
   unloadable
   accept_key_auth :update, :add_comment
 
-  BUGHERD_PRIORITY_MAP = {
-    0 => 'Normal',
-    1 => 'Urgent',
-    2 => 'High',
-    3 => 'Normal',
-    4 => 'Low',
-  }
-
-  BUGHERD_STATUS_MAP = {
-    0 => 'New',
-    1 => 'New',
-    2 => 'New',
-    4 => 'Resolved',
-    5 => 'Closed',
-  }
-
   def update
     api_user = find_current_user
     unless api_user and api_user.admin?
@@ -39,10 +23,10 @@ class BugherdController < ApplicationController
     
     @issue.subject = params[:description] if params[:description]
     
-    redmine_status = best_match_status(params[:status_id].to_i) if params[:status_id]
+    redmine_status = IssueStatus.first('lower(name) = ?', params[:status].downcase) if params[:status]
     @issue.status = redmine_status if redmine_status
     
-    redmine_priority = best_match_priority(params[:priority_id].to_i) if params[:priority_id]
+    redmine_priority = IssuePriority.first('lower(name) = ?', params[:priority].downcase) if params[:priority]
     @issue.priority = redmine_priority if redmine_priority
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
@@ -66,16 +50,6 @@ class BugherdController < ApplicationController
     @issue = @project.issues.find(params[:id])
     @issue.journals.create(:notes => params[:comment], :user => User.current)
     render :text => "OK"
-  end
-  
-private
-
-  def best_match_status(status_id)
-    IssueStatus.find_by_name(BUGHERD_STATUS_MAP[status_id])
-  end
-
-  def best_match_priority(priority_id)
-    IssuePriority.find_by_name(BUGHERD_PRIORITY_MAP[priority_id])
   end
   
 end

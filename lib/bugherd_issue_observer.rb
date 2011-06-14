@@ -1,5 +1,5 @@
 module BugherdIssueObserver
-  BUGHERD_URL = 'www.bh1.nerdburger.net'
+  BUGHERD_URL = 'www.bugherd.com'
   BUGHERD_PORT = 80
   
   def after_save(issue)
