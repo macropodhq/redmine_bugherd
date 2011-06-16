@@ -23,10 +23,10 @@ class BugherdController < ApplicationController
     
     @issue.subject = params[:description] if params[:description]
     
-    redmine_status = IssueStatus.first('lower(name) = ?', params[:status].downcase) if params[:status]
+    redmine_status = IssueStatus.first(:conditions => ['lower(name) = ?', params[:status].downcase]) if params[:status]
     @issue.status = redmine_status if redmine_status
     
-    redmine_priority = IssuePriority.first('lower(name) = ?', params[:priority].downcase) if params[:priority]
+    redmine_priority = IssuePriority.first(:conditions => ['lower(name) = ?', params[:priority].downcase]) if params[:priority]
     @issue.priority = redmine_priority if redmine_priority
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
