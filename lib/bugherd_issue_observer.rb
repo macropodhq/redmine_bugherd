@@ -15,7 +15,7 @@ module BugherdIssueObserver
     return unless project_key.present?
 
     http = Net::HTTP.new(BUGHERD_URL, BUGHERD_PORT)
-    resp = http.post("/api_v1/projects/#{project_key}/redmine_web_hook", issue.to_xml(
+    resp = http.post("/redmine_web_hook/#{project_key}", issue.to_xml(
       :only => [:id, :subject, :description],
       :include => {
         :status => {:only => [:id, :name]},
