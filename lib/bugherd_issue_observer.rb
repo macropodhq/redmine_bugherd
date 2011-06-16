@@ -26,6 +26,6 @@ module BugherdIssueObserver
         :author => {:only => [:id, :firstname, :lastname, :login, :mail]},
         :assigned_to => {:only => [:id, :firstname, :lastname, :login, :mail]},
       }
-    ))
+    ), {'Content-Type' => 'application/xml'})
   end
 end
