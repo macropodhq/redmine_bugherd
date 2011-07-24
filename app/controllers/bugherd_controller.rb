@@ -3,9 +3,9 @@ class BugherdController < ApplicationController
   accept_key_auth :update, :add_comment, :project_list, :status_list, :priority_list
 
   def project_list
-    list = {}
+    list = []
     Project.all.each do |project|
-      list[project.id] = project_name(project)
+      list << {:id => project.id, :name => project_name(project)} if project.active?
     end
     render :xml => list
   end
