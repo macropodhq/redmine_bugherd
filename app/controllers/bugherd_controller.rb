@@ -1,6 +1,22 @@
 class BugherdController < ApplicationController
   unloadable
-  accept_key_auth :update, :add_comment
+  accept_key_auth :update, :add_comment, :project_list, :status_list, :priority_list
+
+  def project_list
+    list = {}
+    Project.all.each do |project|
+      list[project.id] = project_name(project)
+    end
+    render :xml => list
+  end
+
+  def status_list
+    render :xml => IssueStatus.all
+  end
+
+  def priority_list
+    render :xml => IssuePriority.all
+  end
 
   def update
     api_user = find_current_user
@@ -50,6 +66,16 @@ class BugherdController < ApplicationController
     @issue = @project.issues.find(params[:id])
     @issue.journals.create(:notes => params[:comment], :user => User.current)
     render :text => "OK"
+  end
+  
+private
+
+  def project_name(project)
+    if project.parent
+      "#{project_name(project.parent)} > #{project.name}"
+    else
+      project.name
+    end
   end
   
 end
