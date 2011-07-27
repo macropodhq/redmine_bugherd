@@ -1,0 +1,32 @@
+= BugHerd for Redmine
+
+== Installation
+
+To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
+
+  script/plugin install git://github.com/bugherd/redmine_bugherd.git --force
+  
+Reload your Redmine instance. If you use Passenger:
+
+  touch tmp/restart.txt
+
+== Setup
+
+Enable APIs:
+
+1. Go to **Administration > Settings**
+2. Open the **Authentication** tab
+3. Tick **Enable REST web service**
+4. Click **Save**
+
+Create a Project Custom Field called "BugHerd Project Key":
+
+1. Go to **Administration > Custom Fields**
+2. Open the **Projects** tab
+3. Select **New custom field**
+4. Complete these fields:
+   - Name: BugHerd Project Key
+   - *Untick* **Visible** (to ensure the value is not seen by anyone but the project managers)
+5. Click **Save**
+
+Your Redmine instance is now ready to be integrated with BugHerd.
