@@ -26,6 +26,12 @@ Reload your Redmine instance. If you use Passenger:
 
   touch tmp/restart.txt
 
+Installation can be verified by visiting:
+
+  <Redmine Location>/bugherd/plugin_version
+
+This should display the version of this plugin.
+
 == Setup
 
 Enable APIs:
