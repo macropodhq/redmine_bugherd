@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect 'bugherd/plugin_version', :controller => 'bugherd', :action => 'plugin_version'
   map.connect 'bugherd/project_list.:format', :controller => 'bugherd', :action => 'project_list'
   map.connect 'bugherd/status_list.:format', :controller => 'bugherd', :action => 'status_list'
   map.connect 'bugherd/priority_list.:format', :controller => 'bugherd', :action => 'priority_list'

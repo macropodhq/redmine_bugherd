@@ -2,7 +2,17 @@ class BugherdController < ApplicationController
   unloadable
   accept_key_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
 
+  def plugin_version
+    render :text => "1.0"
+  end
+
   def trigger_web_hook
+    api_user = find_current_user
+    unless api_user and api_user.admin?
+      render :text => 'FAIL'
+      return
+    end
+
     @project = Project.find(params[:project_id])
     
     field = ProjectCustomField.find_by_name('BugHerd Project Key')
@@ -19,6 +29,11 @@ class BugherdController < ApplicationController
   end
 
   def project_list
+    api_user = find_current_user
+    unless api_user and api_user.admin?
+      render :text => 'FAIL'
+      return
+    end
     list = []
     Project.all.each do |project|
       list << {:id => project.id, :name => project_name(project)} if project.active?
@@ -27,10 +42,20 @@ class BugherdController < ApplicationController
   end
 
   def status_list
+    api_user = find_current_user
+    unless api_user and api_user.admin?
+      render :text => 'FAIL'
+      return
+    end
     render :xml => IssueStatus.all
   end
 
   def priority_list
+    api_user = find_current_user
+    unless api_user and api_user.admin?
+      render :text => 'FAIL'
+      return
+    end
     render :xml => IssuePriority.all
   end
 
