@@ -2,7 +2,7 @@
 
 == What's this for?
 
-BugHerd is the world's simplest bug tracker for websites. Because it's totally cool and plays well with other cool applications, it integrates nicely with Redmine but requires this plugin to be installed.
+BugHerd is the world's simplest bug tracker for websites. Because it's totally cool and plays well with other cool applications, it integrates with Redmine but requires this plugin to be installed.
 
 If you have been asked to install this by your colleague, you may not have seen BugHerd yet and might want to check it out: http://www.bugherd.com
 
@@ -12,9 +12,11 @@ This plugin enables new APIs for use by BugHerd's server to update issues, and h
 
 == Is it secure?
 
-Yes, for those of you that know Rails: all new APIs that are exposed through new routes that this application adds to your Redmine instance require that an administrator's API key is passed in.
+Yes, all APIs defined by this plug-in that enable information to be passed in and out require that an administrator's API key is used to access them.
 
 == Installation
+
+Who: Operator of the server Redmine runs on
 
 To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
 
@@ -25,6 +27,8 @@ Reload your Redmine instance. If you use Passenger:
   touch tmp/restart.txt
 
 == Setup
+
+Who: Redmine user with admin rights
 
 Enable APIs:
 
@@ -39,7 +43,7 @@ Create a Project Custom Field called "BugHerd Project Key":
 2. Open the "Projects" tab
 3. Select "New custom field"
 4. Complete these fields:
-   - Name: _BugHerd Project Key_
+   - Name: BugHerd Project Key
    - *Untick* "Visible" (to ensure the value is not seen by anyone but the project managers)
 5. Click Save
 
