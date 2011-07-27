@@ -18,8 +18,6 @@ Yes, all APIs defined by this plug-in that enable information to be passed in an
 
 == Installation
 
-Who: Operator of the server Redmine runs on
-
 To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
 
   script/plugin install git://github.com/bugherd/redmine_bugherd.git --force
@@ -29,8 +27,6 @@ Reload your Redmine instance. If you use Passenger:
   touch tmp/restart.txt
 
 == Setup
-
-Who: Redmine user with admin rights
 
 Enable APIs:
 
