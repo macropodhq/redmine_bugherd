@@ -1,7 +1,7 @@
 class BugherdController < ApplicationController
   unloadable
   accept_key_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
-
+  
   def plugin_version
     render :text => "1.0"
   end
@@ -18,14 +18,16 @@ class BugherdController < ApplicationController
     field = ProjectCustomField.find_by_name('BugHerd Project Key')
     return unless field
 
-    value = CustomValue.find_by_customized_id_and_custom_field_id(issue.project.id, field.id)
+    value = CustomValue.find_by_customized_id_and_custom_field_id(@project.id, field.id)
     return unless value
 
     project_key = value.value
     return unless project_key.present?
 
-    http = Net::HTTP.new(BUGHERD_URL, BUGHERD_PORT)
+    http = Net::HTTP.new(BugherdIssueObserver::BUGHERD_URL, BugherdIssueObserver::BUGHERD_PORT)
     http.get("/redmine_web_hook/#{project_key}")
+    
+    render :text => 'OK'
   end
 
   def project_list
