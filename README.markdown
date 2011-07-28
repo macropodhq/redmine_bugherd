@@ -56,3 +56,8 @@ Create a Project Custom Field called "BugHerd Project Key":
 5. Click Save
 
 Your Redmine instance is now ready to be integrated with BugHerd.
+
+More info
+---------
+
+http://www.redmine.org/plugins/redmine_bugherd
