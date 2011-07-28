@@ -3,10 +3,8 @@ module BugherdJournalObserver
   BUGHERD_PORT = 80
   
   def after_save(journal)
-    super(journal)
-    
     issue = journal.journalized.reload
-        
+
     field = ProjectCustomField.find_by_name('BugHerd Project Key')
     return unless field
 
