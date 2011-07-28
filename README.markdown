@@ -28,7 +28,7 @@ Reload your Redmine instance. If you use Passenger:
 
 Installation can be verified by visiting:
 
-  <Redmine Location>/bugherd/plugin_version
+  http://<Redmine Location>/bugherd/plugin_version
 
 This should display the version of this plugin.
 
