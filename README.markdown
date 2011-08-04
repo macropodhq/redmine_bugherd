@@ -67,3 +67,6 @@ Change notes
 
 1.0.1 (4 Aug 2011)
 Essential bugfixes
+
+1.0.2 (4 Aug 2011)
+Webhook bugfix and project list order
