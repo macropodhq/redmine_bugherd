@@ -61,3 +61,9 @@ More info
 ---------
 
 http://www.redmine.org/plugins/redmine_bugherd
+
+Change notes
+------------
+
+1.0.1 (4 Aug 2011)
+Essential bugfixes
