@@ -10,7 +10,7 @@ Redmine::Plugin.register :redmine_bugherd do
 end
 
 require 'dispatcher'
-require 'bugherd_issue_observer'
+require 'bugherd_journal_observer'
 Dispatcher.to_prepare do
   JournalObserver.instance.extend(BugherdJournalObserver)
 end
