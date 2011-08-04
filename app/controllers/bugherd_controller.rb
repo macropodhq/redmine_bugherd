@@ -1,6 +1,6 @@
 class BugherdController < ApplicationController
   unloadable
-  accept_key_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
+  accept_api_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
   
   def plugin_version
     render :text => "1.0.1"
