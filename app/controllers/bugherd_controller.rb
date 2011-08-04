@@ -24,7 +24,7 @@ class BugherdController < ApplicationController
     project_key = value.value
     return unless project_key.present?
 
-    http = Net::HTTP.new(BugherdIssueObserver::BUGHERD_URL, BugherdIssueObserver::BUGHERD_PORT)
+    http = Net::HTTP.new(BugherdJournalObserver::BUGHERD_URL, BugherdJournalObserver::BUGHERD_PORT)
     http.get("/redmine_web_hook/#{project_key}")
     
     render :text => 'OK'
@@ -37,7 +37,7 @@ class BugherdController < ApplicationController
       return
     end
     list = []
-    Project.all.each do |project|
+    Project.all(:order => 'name').each do |project|
       list << {:id => project.id, :name => project_name(project)} if project.active?
     end
     render :xml => list
