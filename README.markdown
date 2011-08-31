@@ -23,15 +23,15 @@ Installation
 
 To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
 
-> script/plugin install git://github.com/bugherd/redmine_bugherd.git --force
+    script/plugin install git://github.com/bugherd/redmine_bugherd.git --force
   
 Reload your Redmine instance. If you use Passenger:
 
-> touch tmp/restart.txt
+    touch tmp/restart.txt
 
 Installation can be verified by visiting:
 
-> http://redmine.example.com/bugherd/plugin_version
+    http://redmine.example.com/bugherd/plugin_version
 
 This should display the version of this plugin.
 
@@ -51,8 +51,14 @@ Create a Project Custom Field called "BugHerd Project Key":
 2. Open the "Projects" tab
 3. Select "New custom field"
 4. Complete these fields:
-   - Name: BugHerd Project Key
-   - *Untick* "Visible" (to ensure the value is not seen by anyone but the project managers)
+   - Name: **BugHerd Project Key**
+   - Format: (leave at "Text")
+   - Min - Max length: (leave at: "0" - "0")
+   - Regular expresssion: (leave blank)
+   - Default value: (leave blank)
+   - Required: (leave unticked)
+   - Visible: **untick** (to ensure the value is not seen by anyone but the project managers)
+   - Searchable: (leave unticked)
 5. Click Save
 
 Your Redmine instance is now ready to be integrated with BugHerd.
