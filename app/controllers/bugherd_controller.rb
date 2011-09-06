@@ -3,7 +3,7 @@ class BugherdController < ApplicationController
   accept_api_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
   
   def plugin_version
-    render :text => "1.0.2"
+    render :text => "1.0.3"
   end
 
   def trigger_web_hook
@@ -80,7 +80,8 @@ class BugherdController < ApplicationController
       @issue.author = User.current
     end
     
-    @issue.subject = params[:description] if params[:description]
+    @issue.subject = truncate(params[:description], 80) if params[:description]
+    @issue.description = params[:description] if params[:description]
     
     redmine_status = IssueStatus.first(:conditions => ['lower(name) = ?', params[:status].downcase]) if params[:status]
     @issue.status = redmine_status if redmine_status
@@ -91,6 +92,10 @@ class BugherdController < ApplicationController
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
     
     if @issue.save
+      unless params[:id].present?
+        @issue.journals.create(:notes => "See #{params[:url]}", :user => User.current)
+      end
+      
       render :text => "OK #{@issue.id}"
     else
       render :xml => @issue.errors
@@ -112,6 +117,18 @@ class BugherdController < ApplicationController
   end
   
 private
+
+  def truncate(s, length, options = {})
+    text = s.dup
+    options[:omission] ||= "..."
+
+    length_with_room_for_omission = length - options[:omission].mb_chars.length
+    chars = text.mb_chars
+    stop = options[:separator] ?
+      (chars.rindex(options[:separator].mb_chars, length_with_room_for_omission) || length_with_room_for_omission) : length_with_room_for_omission
+
+    (chars.length > length ? chars[0...stop] + options[:omission] : text).to_s
+  end
 
   def project_name(project)
     if project.parent
