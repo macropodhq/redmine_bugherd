@@ -77,5 +77,7 @@ Essential bugfixes
 1.0.2 (4 Aug 2011)
 Webhook bugfix and project list order
 
-1.0.3 (6 Sep 2011)
+1.1.0 (6 Sep 2011)
 BugHerd description now mapped to Redmine description instead of subject
+Subject will have a truncated description where length over 80 characters
+New issues created in Redmine will now include a URL to the BugHerd issue as comment
