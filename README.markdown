@@ -21,6 +21,8 @@ Yes, all APIs defined by this plug-in that enable information to be passed in an
 Installation
 ------------
 
+### Custom install
+
 To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
 
     script/plugin install git://github.com/bugherd/redmine_bugherd.git --force
@@ -31,9 +33,30 @@ Reload your Redmine instance. If you use Passenger:
 
 Installation can be verified by visiting:
 
-    http://redmine.example.com/bugherd/plugin_version
+    http://<server>/bugherd/plugin_version
 
 This should display the version of this plugin.
+
+### BitNami Redmine Virtual Machine
+
+Find the VM appliance here: http://bitnami.org/stack/redmine
+
+Log into VMware console
+
+    cd /opt/bitnami
+    ./use_redmine
+    cd apps/redmine/vendor/plugins
+    sudo git clone git://github.com/bugherd/redmine_bugherd.git
+    exit
+    sudo /etc/init.d/bitnami restart
+
+Verify the installation:
+
+    http://<server>/redmine/admin/plugins
+    http://<server>/redmine/bugherd/plugin_version
+
+The last URL should display the version of this plugin.
+
 
 Setup
 -----
