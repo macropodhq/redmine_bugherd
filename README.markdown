@@ -99,7 +99,9 @@ Your Redmine instance is now ready to be integrated with BugHerd.
 More info
 ---------
 
-http://www.redmine.org/plugins/redmine_bugherd
+Plugin description: http://www.redmine.org/plugins/redmine_bugherd
+Setup guide: http://support.bugherd.com/entries/20425381-github
+About BugHerd: http://www.bugherd.com
 
 Change notes
 ------------
