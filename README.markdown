@@ -103,7 +103,7 @@ Plugin description: http://www.redmine.org/plugins/redmine_bugherd
 
 Setup guide: http://support.bugherd.com/entries/20425381-github
 
-About BugHerd: http://www.bugherd.com
+About BugHerd: http://www.bugherd.com/about
 
 Change notes
 ------------
