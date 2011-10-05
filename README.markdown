@@ -26,7 +26,7 @@ BugHerd currently only integrates with Redmine 1.2.
 Support
 -------
 
-For issues or assistance with installation please open a ticket on http://support.bugherd.com
+When experiencing issues or if you require assistance with setup please open a ticket on http://support.bugherd.com
 
 Installation
 ------------
