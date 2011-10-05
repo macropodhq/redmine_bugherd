@@ -18,6 +18,16 @@ This plugin enables new APIs for use by BugHerd's server to update issues, and h
 
 Yes, all APIs defined by this plug-in that enable information to be passed in and out require that an administrator's API key is used to access them.
 
+Compatibility
+-------------
+
+BugHerd currently only integrates with Redmine 1.2.
+
+Support
+-------
+
+For issues or assistance with installation please open a ticket on http://support.bugherd.com
+
 Installation
 ------------
 
