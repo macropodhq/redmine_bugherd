@@ -108,13 +108,16 @@ About BugHerd: http://www.bugherd.com/about
 Change notes
 ------------
 
-1.0.1 (4 Aug 2011)
-Essential bugfixes
-
-1.0.2 (4 Aug 2011)
-Webhook bugfix and project list order
+1.1.1 (21 Oct 2011)
+Bypass validations of custom mandatory fields when creating/updating issues
 
 1.1.0 (6 Sep 2011)
 BugHerd description now mapped to Redmine description instead of subject
 Subject will have a truncated description where length over 80 characters
 New issues created in Redmine will now include a URL to the BugHerd issue as comment
+
+1.0.2 (4 Aug 2011)
+Webhook bugfix and project list order
+
+1.0.1 (4 Aug 2011)
+Essential bugfixes
