@@ -3,7 +3,7 @@ class BugherdController < ApplicationController
   accept_api_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
   
   def plugin_version
-    render :text => "1.1.0"
+    render :text => "1.1.1"
   end
 
   def trigger_web_hook
