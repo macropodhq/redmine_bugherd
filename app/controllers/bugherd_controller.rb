@@ -91,7 +91,7 @@ class BugherdController < ApplicationController
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
     
-    if @issue.save
+    if @issue.save(false)
       unless params[:id].present?
         @issue.journals.create(:notes => "See #{params[:url]}", :user => User.current)
       end
