@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_bugherd do
   name 'Redmine Bugherd plugin'
   author 'BugHerd Pty Ltd'
   description 'Redmine plugin for BugHerd.com'
-  version '1.1.0'
+  version '1.1.1'
   url 'https://github.com/bugherd/redmine_bugherd'
   author_url 'http://www.bugherd.com'
 end
