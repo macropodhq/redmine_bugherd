@@ -21,7 +21,7 @@ Yes, all APIs defined by this plug-in that enable information to be passed in an
 Compatibility
 -------------
 
-BugHerd currently only integrates with Redmine 1.2.
+Redmine 1.2 and 1.3
 
 Support
 -------
