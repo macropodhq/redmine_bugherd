@@ -22,6 +22,7 @@ Compatibility
 -------------
 
 Redmine 1.2 and 1.3
+(users have also reported it works on 1.4 but this has not yet been verified)
 
 Support
 -------
