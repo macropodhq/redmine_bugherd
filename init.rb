@@ -1,4 +1,5 @@
 require 'redmine'
+require 'bugherd_journal_observer'
 
 Redmine::Plugin.register :redmine_bugherd do
   name 'Redmine Bugherd plugin'
@@ -7,9 +8,4 @@ Redmine::Plugin.register :redmine_bugherd do
   version '1.1.1'
   url 'https://github.com/bugherd/redmine_bugherd'
   author_url 'http://www.bugherd.com'
-end
-
-require 'bugherd_journal_observer'
-ActionDispatch::Callbacks.to_prepare do
-  JournalObserver.instance.extend(BugherdJournalObserver)
 end
