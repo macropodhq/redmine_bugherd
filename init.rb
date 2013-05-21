@@ -9,8 +9,7 @@ Redmine::Plugin.register :redmine_bugherd do
   author_url 'http://www.bugherd.com'
 end
 
-require 'dispatcher'
 require 'bugherd_journal_observer'
-Dispatcher.to_prepare do
+ActionDispatch::Callbacks.to_prepare do
   JournalObserver.instance.extend(BugherdJournalObserver)
 end
