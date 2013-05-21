@@ -1,4 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
+RedmineApp::Application.routes_draw do
   match 'bugherd/plugin_version', :controller => 'bugherd', :action => 'plugin_version'
   match 'bugherd/project_list.:format', :controller => 'bugherd', :action => 'project_list'
   match 'bugherd/status_list.:format', :controller => 'bugherd', :action => 'status_list'
