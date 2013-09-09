@@ -40,7 +40,7 @@ class BugherdController < ApplicationController
     Project.all(:order => 'name').each do |project|
       list << {:id => project.id, :name => project_name(project)} if project.active?
     end
-    render :xml => list
+    render :xml => list.to_xml (:root => 'records')
   end
 
   def status_list
@@ -91,7 +91,7 @@ class BugherdController < ApplicationController
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
     
-    if @issue.save(false)
+    if @issue.save
       unless params[:id].present?
         @issue.journals.create(:notes => "See #{params[:url]}", :user => User.current)
       end
