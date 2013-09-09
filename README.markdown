@@ -21,7 +21,7 @@ Yes, all APIs defined by this plug-in that enable information to be passed in an
 Compatibility
 -------------
 
-Redmine 1.x and 2.3.x
+Officially supported up to version 2.3.
 
 Support
 -------
@@ -37,9 +37,8 @@ Installation
     git clone https://github.com/BugHerd/redmine_bugherd.git
     cd ..
     bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+    touch tmp/restart.txt
     
-    
-
 ### Redmine v1.x
 
 To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
@@ -101,6 +100,8 @@ Create a Project Custom Field called "BugHerd Project Key":
    - Required: (leave unticked)
    - Visible: **untick** (to ensure the value is not seen by anyone but the project managers)
    - Searchable: (leave unticked)
+   - Used as a filter: (leave unticked)
+
 5. Click Save
 
 Your Redmine instance is now ready to be integrated with BugHerd.
@@ -116,6 +117,9 @@ About BugHerd: http://www.bugherd.com/about
 
 Change notes
 ------------
+
+2.0.0 (9 Sep 2013)
+Redmine v2.x compatibility
 
 1.1.1 (21 Oct 2011)
 Bypass validations of custom mandatory fields when creating/updating issues
