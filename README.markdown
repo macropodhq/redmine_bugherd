@@ -37,7 +37,16 @@ Installation
     git clone https://github.com/BugHerd/redmine_bugherd.git
     cd ..
     bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+
+Reload your Redmine instance. If you use Passenger:
+
     touch tmp/restart.txt
+
+Installation can be verified by visiting:
+
+    http://<server>/bugherd/plugin_version
+
+This should display the version of this plugin.
     
 ### Redmine v1.x
 
@@ -54,27 +63,6 @@ Installation can be verified by visiting:
     http://<server>/bugherd/plugin_version
 
 This should display the version of this plugin.
-
-### BitNami Redmine Virtual Machine
-
-Find the VM appliance here: http://bitnami.org/stack/redmine
-
-Log into VMware console
-
-    cd /opt/bitnami
-    ./use_redmine
-    cd apps/redmine/vendor/plugins
-    sudo git clone git://github.com/bugherd/redmine_bugherd.git
-    exit
-    sudo /etc/init.d/bitnami restart
-
-Verify the installation:
-
-    http://<server>/redmine/admin/plugins
-    http://<server>/redmine/bugherd/plugin_version
-
-The last URL should display the version of this plugin.
-
 
 Setup
 -----
