@@ -21,8 +21,7 @@ Yes, all APIs defined by this plug-in that enable information to be passed in an
 Compatibility
 -------------
 
-Redmine 1.2 and 1.3
-(users have also reported it works on 1.4 but this has not yet been verified)
+Redmine 1.x and 2.3.x
 
 Support
 -------
@@ -32,7 +31,16 @@ When experiencing issues or if you require assistance with setup please open a t
 Installation
 ------------
 
-### Custom install
+### Redmine v2.x
+
+    cd plugins/
+    git clone https://github.com/BugHerd/redmine_bugherd.git
+    cd ..
+    bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+    
+    
+
+### Redmine v1.x
 
 To (re)install the BugHerd Redmine plugin, go to the base directory of your Redmine instance on your server:
 
