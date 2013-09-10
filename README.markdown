@@ -21,7 +21,7 @@ Yes, all APIs defined by this plug-in that enable information to be passed in an
 Compatibility
 -------------
 
-Officially supported up to version 2.3.
+Redmine v2.3 and older.
 
 Support
 -------
