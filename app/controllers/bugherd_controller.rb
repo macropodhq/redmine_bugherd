@@ -40,7 +40,7 @@ class BugherdController < ApplicationController
     Project.all(:order => 'name').each do |project|
       list << {:id => project.id, :name => project_name(project)} if project.active?
     end
-    render :xml => list.to_xml (:root => 'records')
+    render :xml => list.to_xml(:root => 'records')
   end
 
   def status_list
