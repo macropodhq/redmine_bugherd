@@ -106,6 +106,9 @@ About BugHerd: http://www.bugherd.com/about
 Change notes
 ------------
 
+2.0.1 (3 Oct 2013)
+Make tracker configurable (credit: David Stevens of http://www.blueviewagency.com/)
+
 2.0.0 (9 Sep 2013)
 Redmine v2.x compatibility
 

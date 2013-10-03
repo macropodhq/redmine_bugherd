@@ -3,7 +3,7 @@ class BugherdController < ApplicationController
   accept_api_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
   
   def plugin_version
-    render :text => "2.0.0"
+    render :text => "2.0.1"
   end
 
   def trigger_web_hook
@@ -76,7 +76,7 @@ class BugherdController < ApplicationController
     else
       @issue = Issue.new
       @issue.project = @project
-      @issue.tracker = Tracker.find_by_name('Bug')
+      @issue.tracker = Tracker.find_by_name(Setting.plugin_redmine_bugherd['bugherd_tracker'])
       @issue.author = User.current
     end
     

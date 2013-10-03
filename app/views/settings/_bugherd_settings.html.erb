@@ -1,0 +1,4 @@
+<p>
+  <label><%= :bugherd_tracker %></label>
+  <%= select_tag 'settings[bugherd_tracker]', options_from_collection_for_select(Tracker.sorted, 'name', 'name', @settings['bugherd_tracker']) %>
+</p>
