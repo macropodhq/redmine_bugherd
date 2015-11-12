@@ -37,7 +37,7 @@ class BugherdController < ApplicationController
       return
     end
     list = []
-    Project.all(:order => 'name').each do |project|
+    Project.order(name: :asc).each do |project|
       list << {:id => project.id, :name => project_name(project)} if project.active?
     end
     render :xml => list.to_xml(:root => 'records')
@@ -83,10 +83,10 @@ class BugherdController < ApplicationController
     @issue.subject = truncate(params[:description], 80) if params[:description]
     @issue.description = params[:description] if params[:description]
     
-    redmine_status = IssueStatus.first(:conditions => ['lower(name) = ?', params[:status].downcase]) if params[:status]
+    redmine_status = IssueStatus.where('lower(name) = ?', params[:status].downcase).first if params[:status]
     @issue.status = redmine_status if redmine_status
     
-    redmine_priority = IssuePriority.first(:conditions => ['lower(name) = ?', params[:priority].downcase]) if params[:priority]
+    redmine_priority = IssuePriority.where('lower(name) = ?', params[:priority].downcase).first if params[:priority]
     @issue.priority = redmine_priority if redmine_priority
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]
