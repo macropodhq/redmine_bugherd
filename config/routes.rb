@@ -1,4 +1,16 @@
-if Rails::VERSION::MAJOR >= 3
+if Rails::VERSION::MAJOR >= 4
+
+Rails.application.routes.draw do
+  get 'bugherd/plugin_version', :to => 'bugherd#plugin_version'
+  get 'bugherd/project_list.:format', :to => 'bugherd#project_list'
+  get 'bugherd/status_list.:format', :to => 'bugherd#status_list'
+  get 'bugherd/priority_list.:format', :to => 'bugherd#priority_list'
+  get 'bugherd/trigger_web_hook/:project_id.:format', :to => 'bugherd#trigger_web_hook'
+  get 'bugherd/issue/update.:format', :to => 'bugherd#update'
+  get 'bugherd/issue/add_comment.:format', :to => 'bugherd#add_comment'
+end
+
+elsif Rails::VERSION::MAJOR >= 3
 
 RedmineApp::Application.routes.draw do
   match 'bugherd/plugin_version', :controller => 'bugherd', :action => 'plugin_version'
