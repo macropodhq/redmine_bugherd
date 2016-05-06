@@ -25,7 +25,7 @@ class BugherdController < ApplicationController
     return unless project_key.present?
 
     http = Net::HTTP.new(BugherdJournalObserver::BUGHERD_URL, BugherdJournalObserver::BUGHERD_PORT)
-    http.get("/redmine_web_hook/#{project_key}")
+    http.post("/redmine_web_hook/#{project_key}", '<test/>', {'Content-Type' => 'application/xml'})
     
     render :text => 'OK'
   end
