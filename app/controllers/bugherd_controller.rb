@@ -2,6 +2,8 @@ class BugherdController < ApplicationController
   unloadable
   accept_api_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
   
+  before_filter :find_project, :only => [:update, :add_comment, :trigger_web_hook]
+  
   def plugin_version
     render :text => "3.0.0"
   end
@@ -12,8 +14,6 @@ class BugherdController < ApplicationController
       render :text => 'FAIL'
       return
     end
-
-    @project = Project.find(params[:project_id])
     
     field = ProjectCustomField.find_by_name('BugHerd Project Key')
     return unless field
@@ -70,7 +70,6 @@ class BugherdController < ApplicationController
     end
     
     User.current = User.find_by_mail(params[:email])
-    @project = Project.find(params[:project_id])
     if params[:id].present?
       @issue = @project.issues.find(params[:id])
       @issue.init_journal(User.current, nil)
@@ -115,7 +114,6 @@ class BugherdController < ApplicationController
     end
     
     User.current = User.find_by_mail(params[:email])
-    @project = Project.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.journals.create(:notes => params[:comment], :user => User.current)
     render :text => "OK"
