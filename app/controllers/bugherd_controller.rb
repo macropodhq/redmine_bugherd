@@ -3,7 +3,7 @@ class BugherdController < ApplicationController
   accept_api_auth :update, :add_comment, :project_list, :status_list, :priority_list, :trigger_web_hook
   
   def plugin_version
-    render :text => "2.0.1"
+    render :text => "3.0.0"
   end
 
   def trigger_web_hook
@@ -25,7 +25,7 @@ class BugherdController < ApplicationController
     return unless project_key.present?
 
     http = Net::HTTP.new(BugherdJournalObserver::BUGHERD_URL, BugherdJournalObserver::BUGHERD_PORT)
-    http.get("/redmine_web_hook/#{project_key}")
+    http.post("/redmine_web_hook/#{project_key}", '<test/>', {'Content-Type' => 'application/xml'})
     
     render :text => 'OK'
   end
@@ -37,7 +37,8 @@ class BugherdController < ApplicationController
       return
     end
     list = []
-    Project.all(:order => 'name').each do |project|
+    @projects = Rails::VERSION::MAJOR >= 4 ? Project.order('name') : Project.all(:order => 'name')
+    @projects.each do |project|
       list << {:id => project.id, :name => project_name(project)} if project.active?
     end
     render :xml => list.to_xml(:root => 'records')
@@ -83,10 +84,14 @@ class BugherdController < ApplicationController
     @issue.subject = truncate(params[:description], 80) if params[:description]
     @issue.description = params[:description] if params[:description]
     
-    redmine_status = IssueStatus.first(:conditions => ['lower(name) = ?', params[:status].downcase]) if params[:status]
-    @issue.status = redmine_status if redmine_status
-    
-    redmine_priority = IssuePriority.first(:conditions => ['lower(name) = ?', params[:priority].downcase]) if params[:priority]
+    if Rails::VERSION::MAJOR >= 4
+      redmine_status = IssueStatus.where('lower(name) = ?', params[:status].downcase).first if params[:status]
+      redmine_priority = IssuePriority.where('lower(name) = ?', params[:priority].downcase).first if params[:priority]
+    else
+      redmine_status = IssueStatus.first(:conditions => ['lower(name) = ?', params[:status].downcase]) if params[:status]
+      redmine_priority = IssuePriority.first(:conditions => ['lower(name) = ?', params[:priority].downcase]) if params[:priority]
+    end
+    @issue.status = redmine_status if redmine_status  
     @issue.priority = redmine_priority if redmine_priority
     
     @issue.assigned_to = User.find_by_mail(params[:assignee]) if params[:assignee]

@@ -3,9 +3,9 @@ require 'bugherd_journal_observer'
 
 Redmine::Plugin.register :redmine_bugherd do
   name 'Redmine Bugherd plugin'
-  author 'BugHerd Pty Ltd'
+  author 'Macropod Software Pty Ltd'
   description 'Redmine plugin for BugHerd.com'
-  version '2.0.1'
+  version '3.0.0'
   url 'https://github.com/bugherd/redmine_bugherd'
   author_url 'http://www.bugherd.com'
 
