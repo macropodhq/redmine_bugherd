@@ -106,6 +106,9 @@ About BugHerd: http://www.bugherd.com/about
 Change notes
 ------------
 
+3.0.0 (13 May 2016)
+Redmine v3.x compatibility
+
 2.0.1 (3 Oct 2013)
 Make tracker configurable (credit: David Stevens of http://www.blueviewagency.com/)
 
